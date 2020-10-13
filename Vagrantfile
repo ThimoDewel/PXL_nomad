@@ -4,25 +4,25 @@
 #Array of hashes for all VMs that should be created
 vms=[
   {
-    :hostname => "Server1",
+    :hostname => "Nomad-Server1",
     :ip => "192.168.100.10",
     :box => "centos/7",
     :ram => 2048,
-    :script => "scripts/docker.sh"
+    :script => "scripts/server.sh"
   },
   {
-    :hostname => "Client1",
+    :hostname => "Nomad-Agent1",
     :ip => "192.168.100.11",
     :box => "centos/7",
     :ram => 2048,
-    :script => "scripts/epel.sh"
+    :script => "scripts/client.sh"
   },
   {
-    :hostname => "Client2",
+    :hostname => "Nomad-Agent2",
     :ip => "192.168.100.12",
     :box => "centos/7",
     :ram => 2048,
-    :script => "scripts/docker.sh"
+    :script => "scripts/client.sh"
   }
 ]
 
@@ -40,6 +40,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         node.vm.provider "virtualbox" do |vb|
             vb.customize ["modifyvm", :id, "--memory", machine[:ram]]
         end
+        config.vm.provision "shell", path: "scripts/init.sh"
         node.vm.provision "shell", path: machine[:script]
      end
    end 
