@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cat <<'EOT' >> /etc/nomad.d/client.hcl
 
 datacenter = "dc1"
