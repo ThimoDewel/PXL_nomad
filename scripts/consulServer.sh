@@ -1,8 +1,12 @@
 #!/bin/bash
 
-# Server
+# Server consul
 mkdir temp
-consul keygen >> /temp/keygen.txt
+cd temp
+touch keygen.txt
+ls -a
+consul keygen > keygen.txt
+cd 
 
 consul tls ca create
 
@@ -19,7 +23,7 @@ scp consul-agent-ca.pem dc1-client-consul-1.pem dc1-client-consul-1-key.pem root
 
 # Server consul.hcl     $(cat filename)
 
-cat <<'EOT' >> /etc/nomad.d/server.hcl
+cat <<'EOT' > /etc/consul.d/consul.hcl
 
 datacenter = "dc1"
 data_dir = "/opt/consul"

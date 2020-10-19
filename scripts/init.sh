@@ -16,13 +16,13 @@ sudo yum -y install docker-ce docker-ce-cli containerd.io
 
 #enable and start all services
 sudo systemctl enable docker
-sudo systemctl start docker
+sudo systemctl stop docker
 
 sudo systemctl enable consul
-sudo systemctl start consul
+sudo systemctl stop consul
 
 sudo systemctl enable nomad
-sudo systemctl start nomad
+sudo systemctl stop nomad
 
 #end of setup
 echo =====================================================

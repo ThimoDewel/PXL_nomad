@@ -2,28 +2,28 @@
 # vi: set ft=ruby :
 
 #Array of hashes for all VMs that should be created
-vms=[
-  {
-    :hostname => "Nomad-Server1",
-    :ip => "192.168.100.10",
-    :box => "centos/7",
-    :ram => 2048,
-    :script => "scripts/server.sh"
-  },
-  {
-    :hostname => "Nomad-Agent1",
-    :ip => "192.168.100.11",
-    :box => "centos/7",
-    :ram => 2048,
-    :script => "scripts/client.sh"
-  },
-  {
-    :hostname => "Nomad-Agent2",
-    :ip => "192.168.100.12",
-    :box => "centos/7",
-    :ram => 2048,
-    :script => "scripts/client.sh"
-  }
+vms=[  {
+  :hostname => "Nomad-Agent1",
+  :ip => "192.168.100.11",
+  :box => "centos/7",
+  :ram => 2048,
+  :script => "scripts/client1.sh"
+},
+{
+  :hostname => "Nomad-Agent2",
+  :ip => "192.168.100.12",
+  :box => "centos/7",
+  :ram => 2048,
+  :script => "scripts/client2.sh"
+},
+{
+  :hostname => "Nomad-Server1",
+  :ip => "192.168.100.10",
+  :box => "centos/7",
+  :ram => 2048,
+  :script => "scripts/server.sh"
+}
+
 ]
 
 
@@ -40,8 +40,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         node.vm.provider "virtualbox" do |vb|
             vb.customize ["modifyvm", :id, "--memory", machine[:ram]]
         end
-        config.vm.provision "shell", path: "scripts/init.sh"
+        node.vm.provision "shell", path: "scripts/init.sh"
         node.vm.provision "shell", path: machine[:script]
+        
      end
    end 
 end
