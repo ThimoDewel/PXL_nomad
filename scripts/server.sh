@@ -45,21 +45,14 @@ cat << EOT > /etc/consul.d/consul.hcl
 
 datacenter = "dc1"
 data_dir = "/opt/consul"
-retry_join = ["192.168.100.10"]
-
-EOT
-
-cat << EOT > /etc/consul.d/server.hcl
-
 server = true
-bootstrap_expect = 1
+bootstrap_expect = 3
 ui = true
 client_addr = "0.0.0.0"
+bind_addr = "192.168.100.10"
+retry_join = ["192.168.100.10","192.168.100.11","192.168.100.12"]
 
 EOT
-
-chown --recursive consul:consul /etc/consul.d
-chmod 640 /etc/consul.d/server.hcl
 
 #encrypt = "$(cat /home/vagrant/temp/keygen.txt)"
 #ca_file = "/etc/consul.d/consul-agent-ca.pem"
