@@ -3,11 +3,20 @@
 #nomad server config
 cat <<'EOT' > /etc/nomad.d/nomad.hcl
 
+
 data_dir = "/opt/nomad/server"
+
 
 server {
   enabled          = true
   bootstrap_expect = 1
+}
+
+
+advertise{
+http = "192.168.100.10:4646"
+rpc = "192.168.100.10:4647"
+serf = "192.168.100.10:4648"
 }
 
 EOT
@@ -64,6 +73,8 @@ EOT
 
 
 systemctl start consul
+systemctl start docker
+systemctl start nomad
 
 
 #nomad agent -config=/etc/nomad.d/server.hcl

@@ -1,13 +1,18 @@
 #!/bin/bash
 
 #nomad client2 config
-cat <<'EOT' >> /etc/nomad.d/client2.hcl
+cat <<'EOT' > /etc/nomad.d/nomad.hcl
 
 datacenter = "dc1"
 data_dir = "/opt/nomad/client2"
 
+
 client {
   enabled = true
+}
+
+advertise{
+http = "192.168.100.12:4646"
 }
 
 EOT
@@ -30,3 +35,5 @@ retry_join = ["192.168.100.10","192.168.100.11","192.168.100.12"]
 EOT
 
 systemctl start consul
+systemctl start docker
+systemctl start nomad

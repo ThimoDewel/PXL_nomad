@@ -9,7 +9,7 @@
 ## TO-DO / DONE
 
 - [x] Vagrant file (3VM's)
-- [ ] Script voor installeren van nomad, consul en docker (met systemd ?)
+- [x] Script voor installeren van nomad, consul en docker (met systemd ?)
 
 
 [↑ Back to top ↑](#Inhoudsopgave) 
