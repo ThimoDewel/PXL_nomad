@@ -9,14 +9,66 @@
 ## TO-DO / DONE
 
 - [x] Vagrant file (3VM's)
-- [x] Script voor installeren van nomad, consul en docker (met systemd ?)
+- [x] Consul cluster
+- [x] Nomad cluster
+- [ ] best practice (encyption, ...)
 
 
 [↑ Back to top ↑](#Inhoudsopgave) 
 
 ## Uitwerking opdracht
 
-uitwerking hier ...
+### VagrantFile & Init script
+
+In onze Vagrantfile hebben we gebruik gemaakt van een hash array en een loop om onze vagrant boxes op te zetten. Het voordeel aan deze aanpak is dat het gemakkelijk scalable is en dat het een duidelijk beeld geeft van welk boxes welke instellingen hebben.
+
+Code snippet Vagrantfile:
+``` Ruby
+#Code snippet uit Vagrantfile
+vms=[{
+  :hostname => "Nomad-Server1",
+  :ip => "192.168.100.10",
+  :box => "centos/7",
+  :ram => 2048,
+  :script => "scripts/server.sh"
+}, 
+{
+  :hostname => "Nomad-Agent1",
+  :ip => "192.168.100.11",
+  :box => "centos/7",
+  :ram => 2048,
+  :script => "scripts/client1.sh"
+},
+{
+  :hostname => "Nomad-Agent2",
+  :ip => "192.168.100.12",
+  :box => "centos/7",
+  :ram => 2048,
+  :script => "scripts/client2.sh"
+}
+
+#loop
+vms.each do |machine|
+    #do stuff
+end
+```
+Voor het installeren en configureren van alle nodige services op onze boxes hebben wij gekozen om 4 scriptjes te gebruiken:
+
+* [init.sh](scripts/init.sh)
+    * algemeen script dat voor elke box gebruikt wordt (installeren van alle nodige tools)
+* [server.sh](scripts/server.sh)
+    * 
+* [client1.sh](scripts/client1.sh)
+    * 
+* [client2.sh](scripts/client2.sh)
+    * 
+
+
+
+### Setup/Config Consul cluster
+
+### Setup/Config Nomad cluster
+
 
 [↑ Back to top ↑](#Inhoudsopgave) 
 
