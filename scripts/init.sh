@@ -8,13 +8,15 @@ sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashi
 
 sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 
-#install nomad, consul and docker
+#install nomad, consul, docker and sshpass
 sudo yum -y install nomad
 sudo yum -y install consul
 sudo yum -y install docker-ce docker-ce-cli containerd.io
+sudo yum -y install sshpass
 
 
-#enable and start all services
+
+#enable and stop all services
 sudo systemctl enable docker
 sudo systemctl stop docker
 
@@ -23,6 +25,11 @@ sudo systemctl stop consul
 
 sudo systemctl enable nomad
 sudo systemctl stop nomad
+
+
+#change sshd_service
+sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
+sudo systemctl restart sshd.service
 
 #end of setup
 echo =====================================================
