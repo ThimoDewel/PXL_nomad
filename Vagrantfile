@@ -2,13 +2,7 @@
 # vi: set ft=ruby :
 
 #Array of hashes for all VMs that should be created
-vms=[{
-  :hostname => "Nomad-Server1",
-  :ip => "192.168.100.10",
-  :box => "centos/7",
-  :ram => 2048,
-  :script => "scripts/server.sh"
-}, 
+vms=[
 {
   :hostname => "Nomad-Agent1",
   :ip => "192.168.100.11",
@@ -22,6 +16,13 @@ vms=[{
   :box => "centos/7",
   :ram => 2048,
   :script => "scripts/client2.sh"
+},
+{
+  :hostname => "Nomad-Server1",
+  :ip => "192.168.100.10",
+  :box => "centos/7",
+  :ram => 2048,
+  :script => "scripts/server.sh"
 }
 ]
 

@@ -36,8 +36,8 @@ consul tls cert create -server -dc dc1
 consul tls cert create -server -dc dc1
 
 #known_hosts toevoegen
-sudo bash -c "ssh-keyscan -t rsa,ecdsa,ed25519 192.168.100.11 >> /root/.ssh/known_hosts"
-sudo bash -c "ssh-keyscan -t rsa,ecdsa,ed25519 192.168.100.12 >> /root/.ssh/known_hosts"
+echo $(ssh-keyscan -t rsa,ecdsa,ed25519 192.168.100.11) | sudo tee -a /root/.ssh/known_hosts
+echo $(ssh-keyscan -t rsa,ecdsa,ed25519 192.168.100.12) | sudo tee -a /root/.ssh/known_hosts
 
 # server -> server
 cp consul-agent-ca.pem /etc/consul.d/

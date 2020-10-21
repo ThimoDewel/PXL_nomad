@@ -1,5 +1,7 @@
 #!/bin/bash
+
 mkdir temp
+
 #nomad client1 config
 cat <<'EOT' > /etc/nomad.d/nomad.hcl
 
