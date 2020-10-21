@@ -25,13 +25,7 @@ In onze Vagrantfile hebben we gebruik gemaakt van een hash array en een loop om 
 Code snippet Vagrantfile:
 ``` Ruby
 #Code snippet uit Vagrantfile
-vms=[{
-  :hostname => "Nomad-Server1",
-  :ip => "192.168.100.10",
-  :box => "centos/7",
-  :ram => 2048,
-  :script => "scripts/server.sh"
-}, 
+vms=[ 
 {
   :hostname => "Nomad-Agent1",
   :ip => "192.168.100.11",
@@ -45,8 +39,14 @@ vms=[{
   :box => "centos/7",
   :ram => 2048,
   :script => "scripts/client2.sh"
-}
-
+},
+{
+  :hostname => "Nomad-Server1",
+  :ip => "192.168.100.10",
+  :box => "centos/7",
+  :ram => 2048,
+  :script => "scripts/server.sh"
+}]
 #loop
 vms.each do |machine|
     #do stuff
@@ -55,14 +55,32 @@ end
 Voor het installeren en configureren van alle nodige services op onze boxes hebben wij gekozen om 4 scriptjes te gebruiken:
 
 * [init.sh](scripts/init.sh)
-    * algemeen script dat voor elke box gebruikt wordt (installeren van alle nodige tools)
+    * algemeen script dat voor elke box gebruikt wordt. (installeren van alle nodige tools)
 * [server.sh](scripts/server.sh)
-    * 
+    * Script dat enkel gebruikt wordt op de Nomad server.  
 * [client1.sh](scripts/client1.sh)
-    * 
+    * Script dat enkel gebruikt wordt op de eerste nomad client.
 * [client2.sh](scripts/client2.sh)
-    * 
+    * Script dat enkel gebruikt wordt op de tweede nomad client. (zelfde als client1.sh met wat ip aanpassingen)
 
+Voor het uivoeren van de scripts hebben we volgedne lijnen in onze Vagrantfile: 
+``` Ruby
+#loop for creating boxes
+ vms.each do |machine|
+    config.vm.define machine[:hostname] do |node|
+    
+        #some other stuff here ...
+        
+        #Main script (all boxes)
+        node.vm.provision "shell", path: "scripts/init.sh"
+
+        #Box dependant script (singele boxes)
+        #Script specified in array of hashes
+        node.vm.provision "shell", path: machine[:script]
+        
+     end
+   end 
+```
 
 
 ### Setup/Config Consul cluster
@@ -100,9 +118,9 @@ De quotering zal gebeuren enerzijds op het functionele aspect van je cluster, an
 1. [Multi machine Vagrant](https://www.vagrantup.com/docs/multi-machine)
 2. [looping over VM definitions](https://www.vagrantup.com/docs/vagrantfile/tips#loop-over-vm-definitions)
 3. [RUBY array of hashes](https://stackoverflow.com/questions/4826129/how-to-create-an-array-of-hashes-in-ruby)
-4. [Bron voorbeeld 1](https://www.google.be)
-    * sub item 
-    * sub item 
-
+4. Hashicorp docs: nomad & consul
+    * [Consul](https://learn.hashicorp.com/tutorials/consul/deployment-guide)
+    * [Nomad](https://learn.hashicorp.com/collections/nomad/get-started)
+5. [Consul cluster setup guide](https://devopscube.com/setup-consul-cluster-guide/)
 [↑ Back to top ↑](#Inhoudsopgave) 
 
