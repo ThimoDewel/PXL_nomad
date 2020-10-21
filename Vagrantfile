@@ -42,7 +42,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         end
         node.vm.provision "shell", path: "scripts/init.sh"
         node.vm.provision "shell", path: machine[:script]
-        
      end
    end 
 end
