@@ -72,7 +72,7 @@ verify_server_hostname = true
 bootstrap_expect = 3
 ui = true
 client_addr = "0.0.0.0"
-bind_addr = "192.168.100.11"
+bind_addr = "192.168.100.12"
 retry_join = ["192.168.100.10","192.168.100.11","192.168.100.12"]
 EOT
 
@@ -110,20 +110,20 @@ chmod 700 ~/.ssh
 ssh-keyscan 192.168.100.11 >> ~/.ssh/known_hosts
 ssh-keyscan 192.168.100.12 >> ~/.ssh/known_hosts
 
-# server -> server
+# server1 -> server1
 cp consul-agent-ca.pem /etc/consul.d/
 cp dc1-server-consul-0.pem /etc/consul.d/
 cp dc1-server-consul-0-key.pem /etc/consul.d/
 
-# Server -> Server 2
+# Server1 -> Server 2
 sshpass -p vagrant scp consul-agent-ca.pem dc1-server-consul-1.pem dc1-server-consul-1-key.pem root@192.168.100.11:/etc/consul.d
 sshpass -p vagrant scp /home/vagrant/temp/client1/consul.hcl root@192.168.100.11:/etc/consul.d/consul.hcl
-# Server -> Server 3
+# Server1 -> Server 3
 sshpass -p vagrant scp consul-agent-ca.pem dc1-server-consul-2.pem dc1-server-consul-2-key.pem root@192.168.100.12:/etc/consul.d
 sshpass -p vagrant scp /home/vagrant/temp/client2/consul.hcl root@192.168.100.12:/etc/consul.d/consul.hcl
 
 
-#enable services server
+#enable services server1
 systemctl start docker
 systemctl start consul
 systemctl start nomad

@@ -11,7 +11,7 @@
 - [x] Vagrant file (3VM's)
 - [x] Consul cluster
 - [x] Nomad cluster
-- [ ] best practice (encyption, ...)
+- [x] best practice (encyption, ...)
 
 
 [↑ Back to top ↑](#Inhoudsopgave) 
@@ -57,7 +57,7 @@ Voor het installeren en configureren van alle nodige services op onze boxes hebb
 * [init.sh](scripts/init.sh)
     * algemeen script dat voor elke box gebruikt wordt. (installeren van alle nodige tools)
 * [server.sh](scripts/server.sh)
-    * Script dat enkel gebruikt wordt op de Nomad server.  
+    * Script dat enkel gebruikt wordt op de Nomad server.(Bezit ook de consul client config files)  
 * [client1.sh](scripts/client1.sh)
     * Script dat enkel gebruikt wordt op de eerste nomad client.
 * [client2.sh](scripts/client2.sh)
@@ -84,8 +84,18 @@ Voor het uivoeren van de scripts hebben we volgedne lijnen in onze Vagrantfile:
 
 
 ### Setup/Config Consul cluster
+Voor Consul hebben we gekozen dat al onze agents als servers zullen functioneren omdat enkel servers de data opslaan en repliceren.
 
-### Setup/Config Nomad cluster
+##### Server 1 (Nomad-Server1)
+Alle Consul config files worden op deze machine gemaakt en via ssh naar de andere servers verplaatst. Deze keuze hebben we gemaakt omdat onze Consul config nog extra instellingen nodig hadden voor encryptie. Bijvoorbeeld het veld "encrypt" hier moet een key ingegeven worden die voor alle agents hetzelfde moet zijn. Door deze key te genereren op één server en op deze server alle config files aan te maken is het heel simpel om de key in te vullen vie een script.
+
+
+#### Setup/Config Nomad cluster
+Voor Nomad hebben gekozen voor 1 server die de cluster zal aansturen en beheren, 2 clients die de taken zullen uitvoeren binnen de cluster.
+
+Door een goede Consul configuratie moet er niets speciaals gebeuren om een nomad cluster op te zetten door de Consul service discovery kan dit volledig automatisch geclustered worden.
+
+
 
 
 [↑ Back to top ↑](#Inhoudsopgave) 
