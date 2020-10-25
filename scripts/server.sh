@@ -137,3 +137,7 @@ sshpass -p vagrant ssh root@192.168.100.11 sudo systemctl start nomad
 sshpass -p vagrant ssh root@192.168.100.12 sudo systemctl start docker
 sshpass -p vagrant ssh root@192.168.100.12 sudo systemctl start consul
 sshpass -p vagrant ssh root@192.168.100.12 sudo systemctl start nomad
+
+#autotart nomad job
+sleep 30 #sleep so that the nomad / consul cluster has time to setup properly
+sshpass -p vagrant ssh root@192.168.100.11 sudo nomad job run /home/vagrant/webserver.nomad

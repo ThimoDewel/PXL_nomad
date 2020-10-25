@@ -16,3 +16,10 @@ http = "192.168.100.12:4646"
 }
 
 EOT
+
+#dns resolve 
+cat <<'EOT' >> /etc/resolv.conf
+  nameserver  8.8.8.8
+  nameserver  8.8.4.4
+
+EOT
