@@ -55,15 +55,15 @@ end
 Voor het installeren en configureren van alle nodige services op onze boxes hebben wij gekozen om 4 scriptjes te gebruiken:
 
 * [init.sh](scripts/init.sh)
-    * algemeen script dat voor elke box gebruikt wordt. (installeren van alle nodige tools)
+    * algemeen script dat voor elke box gebruikt wordt. (installeren van alle nodige tools (o.a. docker, consul, nomad))
 * [server.sh](scripts/server.sh)
-    * Script dat enkel gebruikt wordt op de Nomad server.(Bezit ook de consul client config files)  
+    * Script dat enkel gebruikt wordt op de Nomad server.(Bevat ook de consul client config files)  
 * [client1.sh](scripts/client1.sh)
     * Script dat enkel gebruikt wordt op de eerste nomad client.
 * [client2.sh](scripts/client2.sh)
     * Script dat enkel gebruikt wordt op de tweede nomad client. (zelfde als client1.sh met wat ip aanpassingen)
 
-Voor het uivoeren van de scripts hebben we volgedne lijnen in onze Vagrantfile: 
+Voor het uitvoeren van de scripts hebben we volgende lijnen in onze Vagrantfile: 
 ``` Ruby
 #loop for creating boxes
  vms.each do |machine|
@@ -84,16 +84,16 @@ Voor het uivoeren van de scripts hebben we volgedne lijnen in onze Vagrantfile:
 
 
 ### Setup/Config Consul cluster
-Voor Consul hebben we gekozen dat al onze agents als servers zullen functioneren omdat enkel servers de data opslaan en repliceren.
+Voor Consul hebben we gekozen dat al onze agents als servers zullen functioneren.
 
 ##### Server 1 (Nomad-Server1)
 Alle Consul config files worden op deze machine gemaakt en via ssh naar de andere servers verplaatst. Deze keuze hebben we gemaakt omdat onze Consul config nog extra instellingen nodig hadden voor encryptie. Bijvoorbeeld het veld "encrypt" hier moet een key ingegeven worden die voor alle agents hetzelfde moet zijn. Door deze key te genereren op één server en op deze server alle config files aan te maken is het heel simpel om de key in te vullen vie een script.
 
 
 #### Setup/Config Nomad cluster
-Voor Nomad hebben gekozen voor 1 server die de cluster zal aansturen en beheren, 2 clients die de taken zullen uitvoeren binnen de cluster.
+Voor Nomad hebben we gekozen voor 1 server die de cluster zal aansturen en beheren samen met 2 clients die de taken zullen uitvoeren binnen de cluster.
 
-Door een goede Consul configuratie moet er niets speciaals gebeuren om een nomad cluster op te zetten door de Consul service discovery kan dit volledig automatisch geclustered worden.
+Door onze Consul configuratie is het niet nodig om een manuele configuratie uit te voeren voor het opzetten van de Nomad cluster omdat die door middel van de Consul service discovery automatisch geclusterd wordt.
 
 
 
