@@ -5,10 +5,10 @@
   become: yes
   roles:
     - software/consul
-    - software/nomad
+    #- software/nomad
 
 - name: installing docker
-  hosts: client
+  hosts: all
   become: yes
   roles:
     - software/docker
