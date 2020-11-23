@@ -1,0 +1,26 @@
+---
+- name: install cronie
+  yum:
+    name: cronie
+    state: installed
+  notify: restart crond
+
+- debug:
+    msg: The variable resolved to {{ crond__content }}
+
+- name: add hello script
+  template:
+    src: hello.sh.j2
+    dest: /usr/local/bin/hello.sh
+    owner: "root"
+    group: "root"
+    mode: 0755
+  notify: restart crond
+
+- name: configure hello cron
+  cron:
+    name: hourly hello
+    user: root
+    special_time: hourly
+    job: "/usr/local/bin/hello.sh"
+    state: absent

@@ -1,0 +1,27 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+VAGRANTFILE_API_VERSION = "2"
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vbguest.auto_update = false
+  config.vm.box = "centos/7"
+
+  config.vm.define :server do |server|
+    server.vm.hostname = "server"
+    server.vm.network "private_network", ip: "10.0.0.10"
+
+    server.vm.provision "ansible" do |ansible|
+      ansible.config_file = "ansible/ansible.cfg"
+      ansible.playbook = "ansible/plays/server.yml"
+      ansible.groups = {
+        "servers" => ["server"],
+#        "servers:vars" => {"crond__content" => "servers_value"}
+      }
+      ansible.host_vars = {
+#        "server" => {"crond__content" => "server_value"}
+      }
+#      ansible.verbose = '-vvv'
+    end
+
+ end
+
+end
