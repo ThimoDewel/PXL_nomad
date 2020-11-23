@@ -1,8 +1,8 @@
 ---
-- name: Add nomad repo
+- name: Add hashicorp repo
   yum_repository:
-    name: Nomad
-    description: Nomad hashicorp repository
+    name: Hashicorp repo 
+    description: hashicorp repository
     baseurl: https://rpm.releases.hashicorp.com/RHEL/$releasever/$basearch/stable
     gpgcheck: yes
     gpgkey: https://rpm.releases.hashicorp.com/gpg
