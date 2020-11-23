@@ -1,19 +1,21 @@
 ---
 
-- name: Docker oude versies checken
+- name: Docker oude versies verwijderen
   package:
-    name:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - docker-engine
     - docker
     - docker-common
-    - docker-engin
-    state: absent
+    - docker.io
 
 - name:  Docker GPG key toevoegen.
   rpm_key:
     key: "{{ docker_yum_gpg_key }}"
     state: present
 
-- name: Docker repository toeveoegen.
+- name: Docker repository toevoegen.
   get_url:
     url: "{{ docker_yum_repo_url }}"
     dest: '/etc/yum.repos.d/docker-{{ docker_edition }}.repo'
@@ -29,7 +31,7 @@
 
 - name: Verificatie docker enabled en gestart.
   service:
-    name: docker
+    name: "{{ docker_package }}"
     state: "{{ docker_service_state }}"
     enabled: "{{ docker_service_enabled }}"
 

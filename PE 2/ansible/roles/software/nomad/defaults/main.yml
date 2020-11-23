@@ -1,1 +1,4 @@
 ---
+
+nomad_client: false
+nomad_server: true

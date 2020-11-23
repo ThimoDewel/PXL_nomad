@@ -1,1 +1,40 @@
 ---
+- name: Add nomad repo
+  yum_repository:
+    name: Nomad
+    description: Nomad hashicorp repository
+    baseurl: https://rpm.releases.hashicorp.com/RHEL/$releasever/$basearch/stable
+    gpgcheck: yes
+    gpgkey: https://rpm.releases.hashicorp.com/gpg
+
+- name: Install nomad
+  yum:
+    name: nomad
+    state: installed
+  notify: restart nomad
+
+- name: Create Nomad server configuration file
+  template:
+    src: server.hcl.j2
+    dest: /etc/nomad.d/nomad.hcl
+    owner: "nomad"
+    group: "nomad"
+    mode: 0644
+  notify: restart nomad
+  when: nomad_server
+
+- name: Create Nomad client configuration file
+  template:
+    src: client.hcl.j2
+    dest: /etc/nomad.d/nomad.hcl
+    owner: "nomad"
+    group: "nomad"
+    mode: 0644
+  notify: restart nomad
+  when: nomad_client
+
+- name: Ensure Nomad service is started and enabled on boot
+  service: 
+    name: "nomad" 
+    state: started 
+    enabled: yes
