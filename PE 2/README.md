@@ -1,4 +1,4 @@
-# LinuxPE-Groep20
+# LinuxPE-Groep20 (opdracht 2)
 
 ## Inhoudsopgave
 [TO-DO / DONE list](#to-do--done) <br/>
@@ -9,9 +9,9 @@
 ## TO-DO / DONE
 
 - [x] Vagrant file (3VM's)
-- [] Consul cluster
-- [] Nomad cluster
-- [] best practice (encyption, ...)
+- [ ] Consul cluster
+- [ ] Nomad cluster
+- [ ] best practice (encyption, ...)
 
 
 [↑ Back to top ↑](#Inhoudsopgave) 
