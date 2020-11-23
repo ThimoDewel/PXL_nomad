@@ -1,1 +1,14 @@
 ---
+# Docker edition (ce | ee)
+docker_edition: 'ce'
+docker_package: "docker-{{ docker_edition }}"
+docker_package_state: present
+
+# Service opties
+docker_service_state: started
+docker_service_enabled: true
+docker_restart_handler_state: restarted
+
+# CentOS docker repo
+docker_yum_repo_url: https://download.docker.com/linux/centos/docker-{{ docker_edition }}.repo
+docker_yum_gpg_key: https://download.docker.com/linux/centos/gpg

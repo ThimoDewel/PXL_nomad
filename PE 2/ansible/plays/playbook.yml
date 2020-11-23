@@ -1,0 +1,14 @@
+---
+   
+- name: installing nomad and consul
+  hosts: all
+  become: yes
+  roles:
+    - software/consul
+    - software/nomad
+
+- name: installing docker
+  hosts: client
+  become: yes
+  roles:
+    - software/docker
