@@ -1,1 +1,8 @@
 ---
+- name: Download and install Consul
+  yum:
+    name: consul
+    state: installed
+  notify: restart consul
+
+      
