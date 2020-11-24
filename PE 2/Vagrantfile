@@ -1,64 +1,54 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
+
 VAGRANTFILE_API_VERSION = "2"
+
+vms=[
+{
+  :hostname => "Nomad-Server1",
+  :ip => "192.168.100.10",
+  :box => "centos/7",
+  :ram => 2048,
+},  
+{
+  :hostname => "Nomad-Agent1",
+  :ip => "192.168.100.11",
+  :box => "centos/7",
+  :ram => 2048,
+},
+{
+  :hostname => "Nomad-Agent2",
+  :ip => "192.168.100.12",
+  :box => "centos/7",
+  :ram => 2048,
+}
+]
+
+
+VAGRANTFILE_API_VERSION = "2"
+
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "centos/7"
-
-  config.vm.define :server1 do |server1|
-    server1.vm.hostname = "server1"
-    server1.vm.network "private_network", ip: "10.0.0.10"
-
-    server1.vm.provision "ansible" do |ansible|
-      ansible.config_file = "ansible/ansible.cfg"
-      ansible.playbook = "ansible/plays/playbook.yml"
-      ansible.groups = {
-        "servers" => ["server"],
-#        "servers:vars" => {"crond__content" => "servers_value"}
-      }
-      ansible.host_vars = {
-#        "server" => {"crond__content" => "server_value"}
-      }
-#      ansible.verbose = '-vvv'
-    end
-
- end
-
- config.vm.define :agent1 do |agent1|
-  agent1.vm.hostname = "agent1"
-  agent1.vm.network "private_network", ip: "10.0.0.11"
-
-  agent1.vm.provision "ansible" do |ansible|
-    ansible.config_file = "ansible/ansible.cfg"
-    ansible.playbook = "ansible/plays/playbook.yml"
-    ansible.groups = {
-      "servers" => ["server"],
-#        "servers:vars" => {"crond__content" => "servers_value"}
-    }
-    ansible.host_vars = {
-#        "server" => {"crond__content" => "server_value"}
-    }
-#      ansible.verbose = '-vvv'
+  #loop for making all the VMs
+  vms.each do |machine|
+    config.vm.define machine[:hostname] do |node|
+        node.vm.box = machine[:box]
+        node.vm.hostname = machine[:hostname]
+        node.vm.network "private_network", ip: machine[:ip]
+        node.vm.provider "virtualbox" do |vb|
+            vb.customize ["modifyvm", :id, "--memory", machine[:ram]]
+        end
+     end
   end
 
-end
-
-config.vm.define :agent2 do |agent2|
-  agent2.vm.hostname = "agent2"
-  agent2.vm.network "private_network", ip: "10.0.0.12"
-
-  agent2.vm.provision "ansible" do |ansible|
-    ansible.config_file = "ansible/ansible.cfg"
-    ansible.playbook = "ansible/plays/playbook.yml"
-    ansible.groups = {
-      "servers" => ["server"],
-#        "servers:vars" => {"crond__content" => "servers_value"}
-    }
-    ansible.host_vars = {
-#        "server" => {"crond__content" => "server_value"}
-    }
-#      ansible.verbose = '-vvv'
+  config.vm.provision "ansible_local" do |ansible|
+     ansible.config_file = "ansible/ansible.cfg"
+     ansible.playbook = "ansible/plays/playbook.yml"
+     ansible.groups = {
+       "servers" => ["Nomad-Server1"],
+       "clients" => ["Nomad-Agent1", "Nomad-Agent2"],
+       "servers:vars" => {"consul_server" => true, "nomad_server" => true}
+       "clients:vars" => {"consul_server" => true}
+     }
+     ansible.verbose = '-vvv'
   end
-
-end
-
 end
