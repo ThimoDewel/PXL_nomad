@@ -10,7 +10,7 @@
   yum_repository:
     name: Hashicorp repo 
     description: hashicorp repository
-    baseurl: https://rpm.releases.hashicorp.com/RHEL/$releasever/$basearch/stable
+    baseurl: https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
     gpgcheck: yes
     gpgkey: https://rpm.releases.hashicorp.com/gpg
 
