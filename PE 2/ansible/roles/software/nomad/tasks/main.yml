@@ -8,9 +8,9 @@
     
 - name: Add hashicorp repo
   yum_repository:
-    name: Hashicorp repo 
+    name: hashicorp
     description: hashicorp repository
-    baseurl: https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+    baseurl: https://rpm.releases.hashicorp.com/RHEL/$releasever/$basearch/stable
     gpgcheck: yes
     gpgkey: https://rpm.releases.hashicorp.com/gpg
 
