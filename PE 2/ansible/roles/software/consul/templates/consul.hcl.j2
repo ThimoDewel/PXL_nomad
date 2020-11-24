@@ -2,6 +2,7 @@ datacenter = "dc1"
 data_dir = "/opt/consul"
 server = true
 client_addr = "0.0.0.0"
+bootstrap_expect = 3
 ui = true
 bind_addr = "{{ ansible_eth1.ipv4.address }}" 
 retry_join = ["192.168.100.10","192.168.100.11","192.168.100.12"]
