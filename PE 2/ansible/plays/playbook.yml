@@ -10,6 +10,6 @@
   hosts: all
   become: yes
   roles:
-    - software/consul
-    #- software/nomad
+    #- software/consul
+    - software/nomad
 
