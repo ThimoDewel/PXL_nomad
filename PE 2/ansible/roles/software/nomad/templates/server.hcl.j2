@@ -1,4 +1,13 @@
+data_dir = "/opt/nomad/"
+bind_addr = "{{ ansible_eth1.ipv4.address }}"
+
+advertise {
+  http = "{{ ansible_eth1.ipv4.address }}"
+  rpc  = "{{ ansible_eth1.ipv4.address }}"
+  serf = "{{ ansible_eth1.ipv4.address }}"
+} 
+
 server {
-    enabled = true
-    bootstrap_expect = 1
+    enabled = {{nomad__server}}
+    bootstrap_expect = 1    
 }
