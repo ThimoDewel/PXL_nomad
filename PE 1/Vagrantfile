@@ -7,7 +7,7 @@ vms=[
   :hostname => "Nomad-Agent1",
   :ip => "192.168.100.11",
   :box => "centos/7",
-  :ram => 2048,
+  :ram => 1024,
   :script => "scripts/client1.sh"
 },
 {
