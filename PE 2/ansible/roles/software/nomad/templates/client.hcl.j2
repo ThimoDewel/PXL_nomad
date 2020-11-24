@@ -1,6 +1,12 @@
 datacenter = "dc1"
+data_dir = "/opt/nomad/"
+bind_addr = "{{ ansible_eth1.ipv4.address }}
+
 
 client {
-    enabled = true
-    network_interface = "eth1"
+  enabled = true
+}
+
+advertise{
+http = "{{ ansible_eth1.ipv4.address }}:4646"
 }
