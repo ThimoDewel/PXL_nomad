@@ -1,4 +1,11 @@
 ---
+
+- name: install epel
+  yum:
+    name: epel-release
+    state: installed
+    
+    
 - name: Add hashicorp repo
   yum_repository:
     name: Hashicorp repo 
