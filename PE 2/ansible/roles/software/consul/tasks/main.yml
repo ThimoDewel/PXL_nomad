@@ -1,8 +1,35 @@
 ---
+- name: Make sure epel is installed
+  yum:
+    name: epel
+    state: installed
+
+- name: Make sure hashicorp repo is added
+  yum_repository:
+    name: hashicorp
+    description: hashicorp repository
+    baseurl: https://rpm.releases.hashicorp.com/RHEL/$releasever/$basearch/stable
+    gpgcheck: yes
+    gpgkey: https://rpm.releases.hashicorp.com/gpg
+
 - name: Download and install Consul
   yum:
     name: consul
     state: installed
   notify: restart consul
 
+- name: Create consul config files
+  template:
+    src: consul.hcl.j2
+    dest: /etc/consul.d/consul.hcl
+    owner: "consul"
+    group: "consul"
+    mode: 0664
+  notify: restart consul
+
+- name: Make sure that Consul is running and enabled on boot
+  service: 
+    name: "consul" 
+    state: started 
+    enabled: yes
       
