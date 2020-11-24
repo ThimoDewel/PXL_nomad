@@ -1,7 +1,7 @@
 ---
 - name: Make sure epel is installed
   yum:
-    name: epel
+    name: epel-release
     state: installed
 
 - name: Make sure hashicorp repo is added
