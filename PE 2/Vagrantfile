@@ -44,7 +44,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
      ansible.groups = {
        "servers" => ["Nomad-Server1"],
        "clients" => ["Nomad-Agent1", "Nomad-Agent2"],
-      # "servers:vars" => {"consul_server" => true, "nomad_server" => true},
        "clients:vars" => {"consul_server" => true, "nomad_server" => false, "nomad_client" => true }
      }
      ansible.verbose = '-vvv'
