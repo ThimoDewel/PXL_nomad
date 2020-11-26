@@ -2,5 +2,6 @@
 
 - name: GET raw nomad job file from Github
   get_url:
-    url: http://example.com/path/file.conf
+    url: https://raw.githubusercontent.com/ThimoDewel/PXL_nomad/team20/PE%202/Nomad-jobs/webserver.nomad
     dest: /home/root/webserver.nomad
+g
