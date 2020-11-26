@@ -49,8 +49,8 @@ De quotering zal gebeuren enerzijds op het functionele aspect van je cluster, an
     * [Consul](https://learn.hashicorp.com/tutorials/consul/deployment-guide)
     * [Nomad](https://learn.hashicorp.com/collections/nomad/get-started)
 4. [Consul cluster setup guide](https://devopscube.com/setup-consul-cluster-guide/)
-5. [Ansible local provisioning](https://www.vagrantup.com/docs/provisioning/ansible_local)
-6. [Ansible docomentation](https://docs.ansible.com/)
+5. [Ansible local provisioning with Vagrant](https://www.vagrantup.com/docs/provisioning/ansible_local)
+6. [Ansible documentation](https://docs.ansible.com/)
 
 
 [↑ Back to top ↑](#Inhoudsopgave) 
