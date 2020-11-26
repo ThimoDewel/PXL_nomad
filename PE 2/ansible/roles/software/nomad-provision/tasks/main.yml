@@ -1,0 +1,6 @@
+---
+
+- name: GET raw nomad job file from Github
+  get_url:
+    url: http://example.com/path/file.conf
+    dest: /home/root/webserver.nomad
