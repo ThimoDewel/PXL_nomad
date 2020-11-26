@@ -4,4 +4,9 @@
   get_url:
     url: https://raw.githubusercontent.com/ThimoDewel/PXL_nomad/team20/PE%202/Nomad-jobs/webserver.nomad
     dest: /home/root/webserver.nomad
-g
+
+- name: Validate nomad job file syntax
+  shell: nomad job validate /home/root/webserver.nomad
+
+- name: Run nomad job file
+  shell: nomad job run /home/root/webserver.nomad
