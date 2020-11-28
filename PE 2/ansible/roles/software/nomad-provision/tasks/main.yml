@@ -8,5 +8,9 @@
 - name: Validate nomad job file syntax
   shell: nomad job validate /webserver.nomad
 
+- name: 30 second wait till cluster is set up 
+  pause:
+    seconds: 30
+
 - name: Run nomad job file
   shell: nomad job run /webserver.nomad
