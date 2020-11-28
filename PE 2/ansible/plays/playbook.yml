@@ -16,7 +16,7 @@
   
 
 - name: Run nomad job file on clients
-  hosts: Nomad-Agent1
+  hosts: Nomad-Agent2
   become: yes
   roles:
     - software/nomad-provision
