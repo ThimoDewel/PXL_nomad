@@ -1,9 +1,23 @@
 ---
-- name: Installing docker, consul and nomad
-  hosts: all
+- name: Preparing servers
+  hosts: servers
+  become: yes
+  roles:
+    - software/consul
+    - software/nomad
+
+- name: Preparing clients
+  hosts: clients
   become: yes
   roles:
     - software/docker
     - software/consul
     - software/nomad
+  
+
+- name: Run nomad job file on clients
+  hosts: Nomad-Agent1
+  become: yes
+  roles:
+    - software/nomad-provision
 
