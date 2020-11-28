@@ -94,11 +94,11 @@ Snippet from ansible playbook:
 ### Ansible Roles
 * [Docker](ansible/roles/software/docker)
     * Role die enkel op cleints gebruikt is, deze rol kan gebruikt worden om docker te installeren.
-* [Consul](nsible/roles/software/consul)
+* [Consul](ansible/roles/software/consul)
     * Role die op alle nodes gebruikt is, deze rol kan gebruikt worden om consul te installeren.
-* [Nomad](nsible/roles/software/nomad)
+* [Nomad](ansible/roles/software/nomad)
     * Role die op alle nodes gebruikt is, deze rol kan gebruikt worden om nomad te installeren.
-* [Nomad-provision](nsible/roles/software/nomad-provision)
+* [Nomad-provision](ansible/roles/software/nomad-provision)
     * Role die enkel gebruikt is op de tweede nomad client, deze rol kan gebrukt worden om automatisch jobs uit te voeren in nomad.
 
 
