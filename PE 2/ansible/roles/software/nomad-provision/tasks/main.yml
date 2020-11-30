@@ -3,14 +3,14 @@
 - name: GET raw nomad job file from Github
   get_url:
     url: {{ np_url }}
-    dest: {{ np_dest }}
+    dest: /webserver.nomad
 
 - name: Validate nomad job file syntax
   shell: {{ np_validate_command }}
 
 - name: 30 second wait till cluster is set up 
   pause:
-    seconds: {{ np_pause_time_seconds }}
+    seconds: nomad job validate /webserver.nomad
 
 - name: Run nomad job file
-  shell: {{ np_run_job_command }}
+  shell: nomad job run /webserver.nomad
