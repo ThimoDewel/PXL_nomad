@@ -1,0 +1,10 @@
+#  Plays /  Tasks
+
+np_url: https://raw.githubusercontent.com/ThimoDewel/PXL_nomad/team20/PE%202/Nomad-jobs/webserver.nomad
+np_dest: /webserver.nomad
+
+np_validate_command: nomad job validate /webserver.nomad
+
+np_pause_time: 30
+
+np_run_job_command: nomad job run /webserver.nomad
