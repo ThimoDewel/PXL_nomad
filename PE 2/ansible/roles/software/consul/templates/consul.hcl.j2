@@ -1,8 +1,8 @@
-datacenter = "dc1"
-data_dir = "/opt/consul"
-server = true
-client_addr = "0.0.0.0"
-bootstrap_expect = 3
-ui = true
+datacenter = "{{ consul_dc }}"
+data_dir = "{{ consul_data_dir }}"
+server = {{ consul_server }}
+client_addr = "{{ consul_client_addr }}"
+bootstrap_expect = {{ consul_bootstrap_expect }}
+ui = {{ consul_ui }}
 bind_addr = "{{ ansible_eth1.ipv4.address }}" 
-retry_join = ["192.168.100.10","192.168.100.11","192.168.100.12"]
+retry_join = {{ consul_retry_join }}
