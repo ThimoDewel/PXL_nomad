@@ -2,7 +2,7 @@
 - name: Make sure epel is installed
   yum:
     name: epel-release
-    state: installed
+    state: "{{ epel_package_state }}"
 
 - name: Make sure hashicorp repo is added
   yum_repository:
@@ -15,7 +15,7 @@
 - name: Download and install Consul
   yum:
     name: consul
-    state: installed
+    state: "{{ consul_package_state }}"
   notify: restart consul
 
 - name: Create consul config files
@@ -30,6 +30,6 @@
 - name: Make sure that Consul is running and enabled on boot
   service: 
     name: "consul" 
-    state: started 
-    enabled: yes
+    state: "{{ consul_service_state }}"
+    enabled: "{{ consul_service_enabled }}"
       

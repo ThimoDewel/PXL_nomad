@@ -2,3 +2,10 @@
 
 nomad_client: false
 nomad_server: true
+
+nomad_package_state: installed
+epel_package_state: installed
+
+nomad_service_state: started
+nomad_service_enabled: true
+nomad_restart_handler_state: restarted

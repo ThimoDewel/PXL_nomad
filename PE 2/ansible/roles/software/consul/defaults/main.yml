@@ -2,3 +2,10 @@
 
 consul_client: false
 consul_server: true
+
+consul_package_state: installed
+epel_package_state: installed
+
+consul_service_state: started
+consul_service_enabled: true
+consul_restart_handler_state: restarted
