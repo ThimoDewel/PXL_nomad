@@ -6,6 +6,13 @@ client {
   enabled = true
 }
 
+plugin "docker" {
+    config {
+#       allow_caps = [ "CHOWN,DAC_OVERRIDE,FSETID,FOWNER,MKNOD,NET_RAW,SETGID,SETUID,SETFCAP,SETPCAP,NET_BIND_SERVICE,SYS_CHROOT,KILL,AUDIT_WRITE,NET_ADMIN" ]
+       allow_caps = [ "ALL" ]
+    }
+}
+
 advertise{
 http = "{{ ansible_eth1.ipv4.address }}:4646"
 }
