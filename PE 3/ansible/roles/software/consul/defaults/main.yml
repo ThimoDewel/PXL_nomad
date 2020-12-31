@@ -1,4 +1,21 @@
 ---
-
+# mode
 consul_client: false
 consul_server: true
+
+# Plays / Tasks
+
+consul_package_state: installed
+epel_package_state: installed
+
+consul_service_state: started
+consul_service_enabled: true
+consul_restart_handler_state: restarted
+
+#Templates / config files
+
+consul_dc: "dc1"
+consul_data_dir: "opt/consul"
+
+consul_client_addr: '0.0.0.0'
+consul_bootstrap_expect: 3

@@ -1,9 +1,9 @@
 ---
 
 - name: install epel
-  yum:
+  package:
     name: epel-release
-    state: installed
+    state: "{{ epel_package_state }}"
     
     
 - name: Add hashicorp repo
@@ -15,9 +15,9 @@
     gpgkey: https://rpm.releases.hashicorp.com/gpg
 
 - name: Install nomad
-  yum:
+  package:
     name: nomad
-    state: installed
+    state: "{{ nomad_package_state }}"
   notify: restart nomad
 
 - name: Create Nomad server configuration file

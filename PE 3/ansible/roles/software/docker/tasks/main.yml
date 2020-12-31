@@ -1,6 +1,6 @@
 ---
 
-- name: Docker oude versies verwijderen
+- name: Docker old version deletion
   package:
     name: "{{ item }}"
     state: absent
@@ -10,12 +10,12 @@
     - docker-common
     - docker.io
 
-- name:  Docker GPG key toevoegen.
+- name:  Add Docker GPG key
   rpm_key:
     key: "{{ docker_yum_gpg_key }}"
     state: present
 
-- name: Docker repository toevoegen.
+- name: Docker repository add
   get_url:
     url: "{{ docker_yum_repo_url }}"
     dest: '/etc/yum.repos.d/docker-{{ docker_edition }}.repo'
@@ -23,13 +23,13 @@
     group: root
     mode: 0644
 
-- name: Docker installeren.
+- name: Docker install
   package:
     name: "{{ docker_package }}"
     state: "{{ docker_package_state }}"
   notify: restart docker
 
-- name: Verificatie docker enabled en gestart.
+- name: Verification docker enabled and started
   service:
     name: docker
     state: "{{ docker_service_state }}"

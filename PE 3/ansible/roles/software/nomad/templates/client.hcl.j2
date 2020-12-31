@@ -1,6 +1,5 @@
-datacenter = "dc1"
-data_dir = "/opt/nomad/"
-bind_addr = "{{ ansible_eth1.ipv4.address }}
+datacenter = "{{ nomad_dc }}"
+data_dir = "{{ nomad_data_dir }}"
 
 
 client {
