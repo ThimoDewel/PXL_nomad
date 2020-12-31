@@ -4,7 +4,7 @@ docker_edition: 'ce'
 docker_package: "docker-{{ docker_edition }}"
 docker_package_state: present
 
-# Service opties
+# Service options
 docker_service_state: started
 docker_service_enabled: true
 docker_restart_handler_state: restarted

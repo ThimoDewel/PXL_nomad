@@ -9,8 +9,8 @@
 ## TO-DO / DONE
 
 - [x] Vagrant file (3VM's)
-- [ ] Consul cluster
-- [ ] Nomad cluster
+- [x] Consul cluster
+- [x] Nomad cluster
 - [ ] best practice (encyption, ...)
 
 
@@ -18,6 +18,88 @@
 
 ## Uitwerking opdracht
 
+### VagrantFile
+
+In onze Vagrantfile hebben we gebruik gemaakt van een hash array en een loop om onze vagrant boxes op te zetten. Het voordeel aan deze aanpak is dat het gemakkelijk scalable is en dat het een duidelijk beeld geeft van welk boxes welke instellingen hebben.
+
+Code snippet Vagrantfile:
+``` Ruby
+vms=[
+{
+  :hostname => "Nomad-Server1",
+  :ip => "192.168.100.10",
+  :box => "centos/7",
+  :ram => 2048,
+},  
+{
+  :hostname => "Nomad-Agent1",
+  :ip => "192.168.100.11",
+  :box => "centos/7",
+  :ram => 2048,
+},
+{
+  :hostname => "Nomad-Agent2",
+  :ip => "192.168.100.12",
+  :box => "centos/7",
+  :ram => 2048,
+}
+]
+```
+
+Voor het maken van de boxes hebben we deze loop in onze vagrantfile
+``` Ruby
+#loop for creating boxes
+ vms.each do |machine|
+    config.vm.define machine[:hostname] do |node|
+    
+         #some other stuff here ...
+        
+     end
+   end 
+```
+
+### Ansible playbook
+
+In het playbook hebben we een verdeling gemaakt voor servers en clients, zo kan je gemakkelijk een rol verwijderen of toevoegen.
+
+Snippet from ansible playbook:
+
+``` yaml
+
+# Play for all servers in the inventory
+- name: Preparing servers
+  hosts: servers
+  become: yes
+  roles:
+    - software/consul
+    - software/nomad
+
+# Play for all clients in the inventory
+- name: Preparing clients
+  hosts: clients
+  become: yes
+  roles:
+    - software/docker
+    - software/consul
+    - software/nomad
+  
+# Play for a specific machine in inventory
+- name: Run nomad job file on clients
+  hosts: Nomad-Agent2
+  become: yes
+  roles:
+    - software/nomad-provision
+```
+
+### Ansible Roles
+* [Docker](ansible/roles/software/docker)
+    * Role die enkel op cleints gebruikt is, deze rol kan gebruikt worden om docker te installeren.
+* [Consul](ansible/roles/software/consul)
+    * Role die op alle nodes gebruikt is, deze rol kan gebruikt worden om consul te installeren.
+* [Nomad](ansible/roles/software/nomad)
+    * Role die op alle nodes gebruikt is, deze rol kan gebruikt worden om nomad te installeren.
+* [Nomad-provision](ansible/roles/software/nomad-provision)
+    * Role die enkel gebruikt is op de tweede nomad client, deze rol kan gebrukt worden om automatisch jobs uit te voeren in nomad.
 
 
 [↑ Back to top ↑](#Inhoudsopgave) 
@@ -49,5 +131,13 @@ De quotering zal gebeuren enerzijds op het functionele aspect van je cluster, an
     * [Consul](https://learn.hashicorp.com/tutorials/consul/deployment-guide)
     * [Nomad](https://learn.hashicorp.com/collections/nomad/get-started)
 4. [Consul cluster setup guide](https://devopscube.com/setup-consul-cluster-guide/)
+5. [Ansible local provisioning with Vagrant](https://www.vagrantup.com/docs/provisioning/ansible_local)
+6. [Ansible documentation](https://docs.ansible.com/)
+7. [Ansible GET url](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/get_url_module.html)
+8. [Ansible Shell](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/shell_module.html)
+6. [Ansible Pause](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/pause_module.html)
+
+
+
 
 [↑ Back to top ↑](#Inhoudsopgave) 
