@@ -1,4 +1,4 @@
-job "node_exporter" {
+job "node-exporter" {
   datacenters = ["dc1"]
   type = "service"
 
@@ -6,12 +6,12 @@ job "node_exporter" {
     count = 2  #amount of nodes
 
     network {
-      port "node_exporter" {
+      port "node-exporter" {
         to = 9100
       }
     }
 
-    task "node_exporter" {
+    task "node-exporter" {
       driver = "docker"
       
       resources {
@@ -27,22 +27,22 @@ job "node_exporter" {
           "/sys:/host/sys",
           "/:/rootfs"
         ]
-        ports = ["node_exporter"]
+        ports = ["node-exporter"]
         logging {
           type = "journald"
           config {
-            tag = "NODE_EXPORTER"
+            tag = "NODE-EXPORTER"
           }
         }
       }
 
       service {
-        name = "node_exporter"
+        name = "node-exporter"
                 address_mode = "driver"
         tags = [
           "metrics"
         ]
-        port = "node_exporter"
+        port = "node-exporter"
 
 
         check {
