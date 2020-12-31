@@ -9,8 +9,10 @@
 ## TO-DO / DONE
 
 - [x] Vagrant file (3VM's)
-- [ ] Consul cluster
-- [ ] Nomad cluster
+- [x] Consul cluster
+- [x] Nomad cluster
+- [ ] Node Exporter (all nodes)
+- [ ] Prometheus, alertmanager, grafana
 - [ ] best practice (encyption, ...)
 
 
