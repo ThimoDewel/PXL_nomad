@@ -1,0 +1,4 @@
+---
+
+- name: restart node exporter
+  service: "name=Node_exporter state={{ NodeEx_restart_handler_state }}"

@@ -1,0 +1,23 @@
+---
+
+- name: Download node exporter
+  get_url:
+    url: https://github.com/prometheus/node_exporter/releases/download/v1.0.1/node_exporter-1.0.1.linux-amd64.tar.gz
+    dest: /home/vagrant
+    mode: '0777'
+    
+
+- name: Unzip node_exporter
+  unarchive:
+    src: /home/vagrant/node_exporter-1.0.1.linux-amd64.tar.gz
+    dest: /home/vagrant
+
+- name: Change node exporter location to /usr/local/bin
+  command: mv /home/vagrant/node_exporter-1.0.1.linux-amd64/node_exporter /usr/local/bin/
+
+- name: Node exporter Systemd .service file
+  template: 
+    src: node_exporter.service.sh.j2
+    dest: /etc/systemd/system/node_exporter.service
+  notify: restart node exporter
+

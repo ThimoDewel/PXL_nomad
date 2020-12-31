@@ -5,6 +5,7 @@
   roles:
     - software/consul
     - software/nomad
+    - software/node_exporter
 
 - name: Preparing clients
   hosts: clients
@@ -13,7 +14,7 @@
     - software/docker
     - software/consul
     - software/nomad
-  
+    - software/node_exporter
 
 - name: Run nomad job file on clients
   hosts: Nomad-Agent2
