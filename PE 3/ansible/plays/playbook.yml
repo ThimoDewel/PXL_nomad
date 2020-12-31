@@ -21,4 +21,3 @@
   become: yes
   roles:
     - software/nomad-provision
-

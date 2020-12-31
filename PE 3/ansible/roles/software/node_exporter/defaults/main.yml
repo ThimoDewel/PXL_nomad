@@ -4,14 +4,7 @@
 
 # Plays / Tasks
 
-#nomad_package_state: installed
-#epel_package_state: installed
+NodeEx_restart_handler_state: restarted
 
-#nomad_service_state: started
-NodeEx_restart_handler_state: true
-#nomad_restart_handler_state: restarted
 
 #Templates / config files
-
-#nomad_dc: "dc1"
-#nomad_data_dir: "/opt/nomad/"
