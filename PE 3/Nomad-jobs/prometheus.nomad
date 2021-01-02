@@ -4,7 +4,7 @@ job "prometheus"{
 
     group "prometheus" {
         network {
-            port "prometheus_u1" {
+            port "prometheus_port" {
                 to = 9090
  #               static = 9090
 
@@ -12,7 +12,7 @@ job "prometheus"{
         }
         service {
             name = "prometheus"
-            port = "prometheus_u1"
+            port = "prometheus_port"
             tags = [
                 "Metrics"
             ]

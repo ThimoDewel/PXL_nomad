@@ -20,4 +20,4 @@
   hosts: Nomad-Agent2
   become: yes
   roles:
-    - software/nomad-provision
+    - software/webserver
