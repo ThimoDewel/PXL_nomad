@@ -1,1 +1,12 @@
 ---
+
+- name: GET raw nomad job file from Github
+  get_url:
+    url: "{{ prom_url }}"
+    dest: /prometheus.nomad
+
+- name: Validate nomad job file syntax
+  shell: nomad job validate /prometheus.nomad
+
+- name: Run nomad job file
+  shell: nomad job run /prometheus.nomad

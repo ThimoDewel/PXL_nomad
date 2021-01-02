@@ -21,3 +21,4 @@
   become: yes
   roles:
     - software/webserver
+    - software/prometheus
