@@ -6,8 +6,7 @@ job "prometheus"{
         network {
             port "prometheus_port" {
                 to = 9090
- #               static = 9090
-
+                static = 9090
             }
         }
         service {
