@@ -8,7 +8,7 @@
 - name: Validate nomad job file syntax
   shell: nomad job validate /webserver.nomad
 
-- name: 30 second wait till cluster is set up 
+- name: 30 second wait till cluster is set up   
   pause:
     seconds: "{{ web_pause_time_seconds }}"
 
