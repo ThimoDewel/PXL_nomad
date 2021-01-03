@@ -22,7 +22,7 @@ job "prometheus"{
             driver = "docker"
             config {
                 image ="prom/prometheus:latest"
-                ports = ["prometheus_u1"]
+                ports = ["prometheus_port"]
                 logging {
                     type = "journald"
                     config {
