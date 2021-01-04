@@ -11,9 +11,9 @@
 - [x] Vagrant file (3VM's)
 - [x] Consul cluster
 - [x] Nomad cluster
-- [ ] Node Exporter (all nodes)
+- [x] Node Exporter (all nodes)
 - [ ] Prometheus, alertmanager, grafana
-- [ ] best practice (encyption, ...)
+- [ ] best practice (encryption, ...)
 
 
 [↑ Back to top ↑](#Inhoudsopgave) 

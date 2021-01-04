@@ -5,7 +5,6 @@ job "prometheus"{
     group "prometheus" {
         network {
             port "prometheus_port" {
-                host_network = "private"
                 to = 9090
                 static = 9090
             }
@@ -23,6 +22,8 @@ job "prometheus"{
             config {
                 image ="prom/prometheus:latest"
                 ports = ["prometheus_port"]
+                volumes = ["/opt/prometheus/:/etc/prometheus/"]
+                args = [ "--config.file=/etc/prometheus/prometheus.yml" ]
                 logging {
                     type = "journald"
                     config {

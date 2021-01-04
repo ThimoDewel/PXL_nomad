@@ -1,0 +1,9 @@
+global:                                       
+  scrape_interval:     5s                     
+  evaluation_interval: 5s                     
+                                              
+scrape_configs:
+  - job_name: 'node_exporter'                 
+    consul_sd_configs:                        
+      - server: '192.168.1.100:8500'           
+        services: ['nomad-client']  
