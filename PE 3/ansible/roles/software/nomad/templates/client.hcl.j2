@@ -5,6 +5,7 @@ data_dir = "{{ nomad_data_dir }}"
 client {
   enabled = true
   alloc_dir = "/tmp/nomad-allocations"
+  network_interface = "eth1"
 }
 
 plugin "docker" {

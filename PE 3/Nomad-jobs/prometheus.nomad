@@ -5,6 +5,7 @@ job "prometheus"{
     group "prometheus" {
         network {
             port "prometheus_port" {
+                host_network = "private"
                 to = 9090
                 static = 9090
             }
