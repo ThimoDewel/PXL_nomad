@@ -1,36 +1,21 @@
-global:                                       
-  scrape_interval:     5s                     
-  evaluation_interval: 5s                     
-                                              
-scrape_configs:                               
-                                              
-  - job_name: 'nomad_metrics'                                                             
-    consul_sd_configs:                        
-    - server: 'localhost:8500'             
-      services: ['nomad-client', 'nomad']     
-                                              
-    relabel_configs:                          
-    - source_labels: ['__meta_consul_tags']   
-      regex: '(.*)http(.*)'                   
-      action: keep                            
-                                              
-    scrape_interval: 5s                       
-    metrics_path: /v1/metrics                 
-    params:                                   
-      format: ['prometheus']    
+global:
+  scrape_interval:     5s
+  evaluation_interval: 5s
 
-  - job_name: 'node_exporter'                 
-    consul_sd_configs:                        
-      - server: 'localhost:8500'           
-        services: ['nomad-client']            
-    relabel_configs:                          
-      - source_labels: [__meta_consul_tags]   
-        regex: '(.*)http(.*)'                 
-        action: keep                          
-      - source_labels: [__meta_consul_service]
-        target_label: job                     
-      - source_labels: [__address__]          
-        action: replace                       
-        regex: ([^:]+):.*                     
-        replacement: $1:9100                  
-        target_label: __address__   
+scrape_configs:
+
+  - job_name: 'nomad_metrics'
+
+    consul_sd_configs:
+    - server: '192.168.100.10:8500'
+      services: ['nomad-client', 'nomad']
+
+    relabel_configs:
+    - source_labels: ['__meta_consul_tags']
+      regex: '(.*)http(.*)'
+      action: keep
+
+    scrape_interval: 5s
+    metrics_path: /v1/metrics
+    params:
+      format: ['prometheus']
