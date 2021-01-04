@@ -25,7 +25,7 @@ job "prometheus"{
                 logging {
                     type = "journald"
                     config {
-                        tag = "PROMETEHUS"
+                        tag = "PROMETHEUS"
                     }
                 }
             }
