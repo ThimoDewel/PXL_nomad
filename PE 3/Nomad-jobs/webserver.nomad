@@ -24,6 +24,9 @@ job "webserver" {
       service {
         name = "webserver"
         port = "webserver_web"
+        tags = [
+                "webserver"
+            ]
       }
 
       resources {
