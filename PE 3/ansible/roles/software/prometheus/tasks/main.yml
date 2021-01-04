@@ -1,4 +1,9 @@
 ---
+- name: Create dir for prometheus config file
+  file:
+    path: /opt/prometheus
+    state: directory
+    mode: '0777'
 
 - name: Get Prometheus.yml 
   template:
