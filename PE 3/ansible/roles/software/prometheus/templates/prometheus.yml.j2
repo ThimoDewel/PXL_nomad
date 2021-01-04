@@ -19,3 +19,19 @@ scrape_configs:
     metrics_path: /v1/metrics
     params:
       format: ['prometheus']
+
+  - job_name: 'webserver'
+
+    consul_sd_configs:
+    - server: '192.168.100.10:8500'
+      services: ['webserver']
+
+    relabel_configs:
+    - source_labels: ['__meta_consul_tags']
+      regex: '(.*)http(.*)'
+      action: keep
+
+    scrape_interval: 5s
+    metrics_path: /v1/metrics
+    params:
+      format: ['prometheus']
