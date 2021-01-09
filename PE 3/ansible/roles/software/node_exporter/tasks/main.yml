@@ -1,13 +1,13 @@
 ---
 
-- name: GET raw nomad job file from Github /node_ecporter.nomad
+- name: GET raw nomad job file from Github /node_exporter.nomad
   get_url:
     url: "{{ nodeEx_url }}"
     dest: /node_exporter.nomad
 
-- name: Validate nomad job file syntax /node_ecporter.nomad
-  shell: nomad job validate /node_ecporter.nomad
+- name: Validate nomad job file syntax /node_exporter.nomad
+  shell: nomad job validate /node_exporter.nomad
 
-- name: Run nomad job file /node_ecporter.nomad
-  shell: nomad job run /node_ecporter.nomad
+- name: Run nomad job file /node_exporter.nomad
+  shell: nomad job run /node_exporter.nomad
 
