@@ -19,7 +19,7 @@ job "grafana" {
                 image = "grafana/grafana"
                 force_pull = true
             
-                ports = ["grafana"]
+                ports = ["grafana_port"]
                 logging {
                     type = "journald"
                     config {
