@@ -49,7 +49,7 @@ job "webserver" {
               image = "bitnami/apache-exporter"
               force_pull = true
           
-               ports = ["metrics"]
+               ports = ["webserver_metrics"]
               logging {
                   type = "journald"
                   config {
@@ -61,7 +61,7 @@ job "webserver" {
         
             service {
                 name = "apache-exporter"
-                port = "metrics"
+                port = "webserver_metrics"
                 tags = ["metrics"]
             }
         }
