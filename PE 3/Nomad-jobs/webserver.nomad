@@ -9,6 +9,9 @@ job "webserver" {
       port "webserver_web" {
         to = 80
       }
+      port "webserver_metrics"{
+        to = 9117
+      }
     }
 
     service {
@@ -38,5 +41,29 @@ job "webserver" {
         name = "webserver"
       }
     }
+
+      task "apache-exporter" {
+          driver = "docker"
+
+          config {
+              image = "bitnami/apache-exporter"
+              force_pull = true
+          
+               ports = ["metrics"]
+              logging {
+                  type = "journald"
+                  config {
+                       tag = "apache-exporter"
+                  }
+              }
+            args = [ "--scrape_uri=https://127.0.0.1/server-status/?auto"]
+          }
+        
+            service {
+                name = "apache-exporter"
+                port = "metrics"
+                tags = ["metrics"]
+            }
+        }
   }
 }
