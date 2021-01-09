@@ -21,3 +21,5 @@
     - software/webserver
     - software/prometheus
     - software/node_exporter
+    - software/grafana
+    - software/alertmanager

@@ -1,1 +1,12 @@
 ---
+
+- name: GET raw nomad job file from Github /grafana.nomad
+  get_url:
+    url: "{{ ngraf_url }}"
+    dest: /grafana.nomad
+
+- name: Validate nomad job file syntax /grafana.nomad
+  shell: nomad job validate /grafana.nomad
+
+- name: Run nomad job file /grafana.nomad
+  shell: nomad job run /grafana.nomad

@@ -1,1 +1,12 @@
 ---
+
+- name: GET raw nomad job file from Github /alertmanager.nomad
+  get_url:
+    url: "{{ alert_url }}"
+    dest: /alertmanager.nomad
+
+- name: Validate nomad job file syntax /alertmanager.nomad
+  shell: nomad job validate /alertmanager.nomad
+
+- name: Run nomad job file /alertmanager.nomad
+  shell: nomad job run /alertmanager.nomad
