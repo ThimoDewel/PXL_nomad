@@ -26,6 +26,10 @@ scrape_configs:
     - server: '192.168.100.10:8500'
       services: ['webserver']
 
+    relabel_configs:
+    - source_labels: ['__meta_consul_tags']
+      regex: '(.*)webserver(.*)'
+      action: keep
 
     scrape_interval: 5s
     metrics_path: /v1/metrics
