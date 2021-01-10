@@ -1,0 +1,11 @@
+---
+groups:
+- name: Webserver Alerts
+  rules:
+  - alert: Apache server down
+    expr: absent(up{job="webserver"})
+    for: 10s
+    labels:
+      severity: critical
+    annotations:
+      description: "Our webserver is down."

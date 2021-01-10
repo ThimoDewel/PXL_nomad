@@ -17,6 +17,9 @@ job "alertmanager" {
             config {
                 image = "prom/alertmanager"                
                 ports = ["alertmanager"]
+                volumes = [
+                    "/opt/alertmanager/:/etc/alertmanager/",     
+                ]
 
                 logging {
                     type = "journald"
