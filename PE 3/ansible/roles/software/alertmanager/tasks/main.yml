@@ -4,16 +4,6 @@
   get_url:
     url: "{{ alert_url }}"
     dest: /alertmanager.nomad
-- name: Create dir for alertmanager config file
-  file:
-    path: /opt/alertmanager
-    state: directory
-    mode: '0777'
-
-- name: Get alerts.yml 
-  template:
-    src: alerts.yml.j2
-    dest: /opt/alertmanager/alerts.yml
 
 - name: Validate nomad job file syntax /alertmanager.nomad
   shell: nomad job validate /alertmanager.nomad

@@ -10,6 +10,11 @@
     src: prometheus.yml.j2
     dest: /opt/prometheus/prometheus.yml
 
+- name: Get alerts.yml 
+  template:
+    src: alerts.yml.j2
+    dest: /opt/prometheus/alerts.yml
+
 - name: GET raw nomad job file from Github
   get_url:
     url: "{{ prom_url }}"
