@@ -2,8 +2,8 @@
 groups:
 - name: Webserver Alerts
   rules:
-  
-   - alert: ApacheDown
+
+  - alert: ApacheDown
     expr: apache_up == 0
     for: 0m
     labels:
