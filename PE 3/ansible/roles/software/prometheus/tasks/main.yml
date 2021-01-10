@@ -12,7 +12,7 @@
 
 - name: Get alerts.yml 
   template:
-    src: alerts.yml.j2
+    src: alerts.yml
     dest: /opt/prometheus/alerts.yml
 
 - name: GET raw nomad job file from Github
