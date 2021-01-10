@@ -48,5 +48,7 @@ De quotering zal gebeuren enerzijds op het functionele aspect van je cluster en 
     * [Consul](https://learn.hashicorp.com/tutorials/consul/deployment-guide)
     * [Nomad](https://learn.hashicorp.com/collections/nomad/get-started)
 4. [Consul cluster setup guide](https://devopscube.com/setup-consul-cluster-guide/)
-
+5. [Prometheus alerts](https://awesome-prometheus-alerts.grep.to/rules.html)
+6. [Prometheus alerting rules](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/)
+7. [Nomad-consul-prometheus git repo](https://github.com/visibilityspots/nomad-consul-prometheus)
 [↑ Back to top ↑](#Inhoudsopgave) 
