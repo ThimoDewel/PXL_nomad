@@ -1,6 +1,6 @@
 #  Plays /  Tasks
 
 prom_url: https://raw.githubusercontent.com/ThimoDewel/PXL_nomad/team20/PE%203/Nomad-jobs/prometheus.nomad
-
+prom_alert_url: https://raw.githubusercontent.com/ThimoDewel/PXL_nomad/team20/PE%203/ansible/roles/software/prometheus/templates/alerts.yml
 
 
