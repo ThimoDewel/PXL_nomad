@@ -1,6 +1,6 @@
 #  Plays /  Tasks
 
-web_url: https://raw.githubusercontent.com/ThimoDewel/PXL_nomad/team20/PE%202/Nomad-jobs/webserver.nomad
+web_url: https://raw.githubusercontent.com/ThimoDewel/PXL_nomad/team20/PE%203/Nomad-jobs/webserver.nomad
 
 web_pause_time_seconds: 30
 
