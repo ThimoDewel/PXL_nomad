@@ -5,15 +5,15 @@
     state: directory
     mode: '0777'
 
+- name: Get alerts.yml 
+  get_url:
+    url: "{{ prom_alert_url }}"
+    dest: /opt/prometheus/alerts.yml
+
 - name: Get Prometheus.yml 
   template:
     src: prometheus.yml.j2
     dest: /opt/prometheus/prometheus.yml
-
-- name: Get alerts.yml 
-  get_url:
-    url: "{{ prom_alert_url  }}"
-    dest: /opt/prometheus/alerts.yml
 
 - name: GET raw nomad job file from Github
   get_url:
