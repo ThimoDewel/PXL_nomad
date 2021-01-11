@@ -12,7 +12,7 @@
 - [x] Consul cluster
 - [x] Nomad cluster
 - [x] Node Exporter (all nodes)
-- [ ] Prometheus, alertmanager, grafana
+- [x] Prometheus, alertmanager, grafana
 - [ ] best practice (encryption, ...)
 
 
@@ -25,7 +25,6 @@ Uitleg zie PE 2.
 
 ## Ansible playbook
 In het playbook hebben we een verdeling gemaakt voor servers en clients, zo kan je gemakkelijk een rol verwijderen of toevoegen.
-
 Opmerkelijk hier is dat alle nomad jobs worden gerunned op de Agent2 dit komt omdat deze als laatste VM is dat wordt aangemaakt.
 
 Snippet from ansible playbook:
