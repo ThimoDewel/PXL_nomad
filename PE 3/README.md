@@ -20,6 +20,66 @@
 
 ## Uitwerking opdracht
 
+## VagrantFile
+Uitleg zie PE 2.
+
+## Ansible playbook
+In het playbook hebben we een verdeling gemaakt voor servers en clients, zo kan je gemakkelijk een rol verwijderen of toevoegen.
+
+Opmerkelijk hier is dat alle nomad jobs worden gerunned op de Agent2 dit komt omdat deze als laatste VM is dat wordt aangemaakt.
+
+Snippet from ansible playbook:
+
+``` yaml
+# Server plays
+- name: Preparing servers
+  hosts: servers
+  become: yes
+  roles:
+    - software/consul
+    - software/nomad
+
+#plays for both clients
+- name: Preparing clients
+  hosts: clients
+  become: yes
+  roles:
+    - software/docker
+    - software/consul
+    - software/nomad
+
+#plays for Agent 2 (all nomad jobs)
+- name: Run nomad job file on clients
+  hosts: Nomad-Agent2
+  become: yes
+  roles:
+    - software/webserver
+    - software/prometheus
+    - software/node_exporter
+    - software/grafana
+    - software/alertmanager
+```
+
+## Ansible Roles
+* [Docker](ansible/roles/software/docker)
+    * Role die enkel op cleints gebruikt is, deze rol kan gebruikt worden om docker te installeren.
+* [Consul](ansible/roles/software/consul)
+    * Role die op alle nodes gebruikt is, deze rol kan gebruikt worden om consul te installeren.
+* [Nomad](ansible/roles/software/nomad)
+    * Role die op alle nodes gebruikt is, deze rol kan gebruikt worden om nomad te installeren.
+* [webserver](ansible/roles/software/webserver)
+    * Role die enkel gebruikt is op de tweede nomad client, deze rol kan gebrukt worden om automatisch een apache job uit te voeren in nomad.
+* [prometheus](ansible/roles/software/prometheus)
+    * Role die enkel gebruikt is op de tweede nomad client, deze rol kan gebrukt worden om automatisch een prometheus job uit te voeren in nomad.
+* [node_exporter](ansible/roles/software/node_exporter)
+    * Role die enkel gebruikt is op de tweede nomad client, deze rol kan gebrukt worden om automatisch een node-exporter job uit te voeren in nomad.
+* [grafana](ansible/roles/software/grafana)
+    * Role die enkel gebruikt is op de tweede nomad client, deze rol kan gebrukt worden om automatisch een grafana job uit te voeren in nomad.
+* [alertmanager](ansible/roles/software/alertmanager)
+    * Role die enkel gebruikt is op de tweede nomad client, deze rol kan gebrukt worden om automatisch een alertmanager uit te voeren in nomad.
+
+## Verdeling van de taken
+Elke deel van de opdracht is samen gemaakt via pair programming. (Discord/Teams screenshareing)
 
 
 [↑ Back to top ↑](#Inhoudsopgave) 
@@ -51,4 +111,5 @@ De quotering zal gebeuren enerzijds op het functionele aspect van je cluster en 
 5. [Prometheus alerts](https://awesome-prometheus-alerts.grep.to/rules.html)
 6. [Prometheus alerting rules](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/)
 7. [Nomad-consul-prometheus git repo](https://github.com/visibilityspots/nomad-consul-prometheus)
+
 [↑ Back to top ↑](#Inhoudsopgave) 
