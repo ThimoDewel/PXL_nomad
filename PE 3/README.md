@@ -78,7 +78,7 @@ Snippet from ansible playbook:
     * Role die enkel gebruikt is op de tweede nomad client, deze rol kan gebrukt worden om automatisch een alertmanager uit te voeren in nomad.
 
 ## Verdeling van de taken
-Elke deel van de opdracht is samen gemaakt via pair programming. (Discord/Teams screenshareing)
+Elke deel van de opdracht is samen gemaakt via pair programming. (Discord/Teams screensharing)
 
 
 [↑ Back to top ↑](#Inhoudsopgave) 
